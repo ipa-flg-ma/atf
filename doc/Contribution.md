@@ -1,6 +1,7 @@
 # Contributing to the ATF
 ## Extend the ATF with your own metric
 The following steps are needed to implement a new metrics in ATF:
+### Python File
 - Create new python-file for the metrics, using the following nameconvention:
 ```
 calculate_*name*.py
@@ -8,7 +9,7 @@ calculate_*name*.py
 - copy existing structure from one of the implemented metrics, looking like:
 ```python
 class CalculatePublishRateParamHandler
-    def parse_parameter(self, testblock_name, params)	
+    def parse_parameter(self, testblock_name, params):
 class CalculatePublishRate:
     def __init__(self, groundtruth, groundtruth_epsilon):
     def start(self, timestamp):
@@ -38,6 +39,7 @@ from atf_metrics.calculate_jerk import CalculateJerk, CalculateJerkParamHandler
 jerk:
   handler: CalculateJerkParamHandler
 ```
+### ATF Presenter
 - In file ```atf\_presenter\html\js\atf\_tools\test\_list.js``` add (using "jerk" as an example):
 ```javascript
 var plot_options = {
@@ -75,10 +77,9 @@ if (metric_name == 'path_length') chart_legend_name = testblock_name + "<br>(" +
 if (metric_name == 'publish_rate') chart_legend_name = testblock_name + "<br>(" + metric_data['details']['topic'] + ")"
 if (metric_name == 'interface') chart_legend_name = testblock_name + "<br>(" + metric_data['details'] + ")"
 if (metric_name == 'jerk') chart_legend_name = testblock_name + "<br>(" + metric_data['details']['topic'] + ")"
-if (metric_name == '*name*') chart_legend_name = testblock_name + "<br>(" + metric_data['details'] + ")"
 ```
   add...
 ```javascript
 if (metric_name == '*name*') chart_legend_name = testblock_name + "<br>(" + metric_data['details'] + ")"
 ```
-  to get add information under the metrics-name in the presenter. The "details" you store in the "metrics\_data" will be shown under the metrics-name in brackets.
+To get additional information in the presenter. The "details" you store in the "metrics\_data" will be shown below the metrics-name in brackets.
