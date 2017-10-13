@@ -13,7 +13,7 @@ class RecordInterface:
         self.bag_file_writer = bag_file_writer
 
     def trigger_callback(self, goal):
-        #print "RecordInterface goal=", goal
+        # print "RecordInterface goal=", goal
 
         publishers = {}
         subscribers = {}
@@ -35,22 +35,21 @@ class RecordInterface:
                 continue
             break
 
-
-        #print "publishers=", publishers
-        #print "subscribers=", subscribers
-        #print "services=", services
-        #print "topic_types=", topic_types
-        #print "service_types=", service_types
+        # print "publishers=", publishers
+        # print "subscribers=", subscribers
+        # print "services=", services
+        # print "topic_types=", topic_types
+        # print "service_types=", service_types
 
         api_dict = {}
         self.add_api(api_dict, "publishers", publishers, topic_types)
         self.add_api(api_dict, "subscribers", subscribers, topic_types)
         self.add_api(api_dict, "services", services, service_types)
-        #TODO actions
+        # TODO actions
 
-        #print "api_dict=\n", api_dict
+        # print "api_dict=\n", api_dict
         api = self.dict_to_msg(api_dict)
-        #print "api=\n", api
+
 
         # write api to bagfile
         self.bag_file_writer.write_to_bagfile("/atf/" + goal.name + "/api", api, rospy.Time.now())
@@ -74,57 +73,57 @@ class RecordInterface:
 
     def add_api(self, api, api_descriptor, api_state, types):
         for name, nodes in api_state:
-            #print "name=", name
-            #print "nodes=", nodes
+            # print "name=", name
+            # print "nodes=", nodes
             for node in nodes:
-                #print "node=", node
+                # print "node=", node
                 if not node in api:
-                    #print "new"
+                    # print "new"
                     api[node] = {}
                 else:
-                    #print "merge"
+                    # print "merge"
                     pass
                 if not api_descriptor in api[node]:
                     api[node][api_descriptor] = []
                 api_type = self.match_type(name, types)
                 api[node][api_descriptor].append([name, api_type])
-                #print "api=", api
+                # print "api=", api
 
     def match_type(self, name, types):
-        #print "name=", name
-        #print "types=", types
+        # print "name=", name
+        # print "types=", types
         for item in types:
             if item[0] == name:
-                #print "type=", item[1]
+                # print "type=", item[1]
                 return item[1]
         return None
 
     def dict_to_msg(self, api_dict):
         api = Api()
-        #print "api=", api
+        # print "api=", api
         # fill Api message
         for node, data in api_dict.items():
-            #print ""
-            #print "node=", node
-            #print "data=", data
+            # print ""
+            # print "node=", node
+            # print "data=", data
             node_api = NodeApi()
             node_api.name = node
-            #print "node_api1=", node_api
+            # print "node_api1=", node_api
             for api_descriptor, api_data in data.items():
-                #print "api_descriptor=", api_descriptor
-                #print "api_data=", api_data
+                # print "api_descriptor=", api_descriptor
+                # print "api_data=", api_data
                 for item in api_data:
-                    #print "item=", item
+                    # print "item=", item
                     interface_item = InterfaceItem()
                     interface_item.name = item[0]
                     interface_item.type = item[1]
                     getattr(node_api.interface, api_descriptor).append(interface_item)
-                #print "node_api2=", node_api
-            #if "subscribers" in data:
+                    # print "node_api2=", node_api
+            # if "subscribers" in data:
             #    node_api.interface.subscribers = data["subscribers"]
-            #if "services" in data:
+            # if "services" in data:
             #    node_api.interface.services = data["services"]
-            #TODO actions
+            # TODO actions
             api.nodes.append(node_api)
-        #print "api=\n", api
+        # print "api=\n", api
         return api

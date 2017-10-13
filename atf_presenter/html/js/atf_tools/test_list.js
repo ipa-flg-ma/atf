@@ -310,6 +310,50 @@ var TestList = {
         plotOptions: {},
         tooltip: plot_tooltip
       },
+      jerk: {
+        chart: {
+          defaultSeriesType: 'column',
+          type: 'column',
+          zoomType: 'xy'
+        },
+        title: {
+          text: 'Jerk'
+        },
+        yAxis: {
+          title: {
+            text: 'Jerk [m/s^3]'
+          }
+        },
+        xAxis: {
+          labels: {
+            enabled: false
+          }
+        },
+        plotOptions: {},
+        tooltip: plot_tooltip
+      },
+      goal: {
+        chart: {
+          defaultSeriesType: 'column',
+          type: 'column',
+          zoomType: 'xy'
+        },
+        title: {
+          text: 'Goal'
+        },
+        yAxis: {
+          title: {
+            text: 'Distance [m]'
+          }
+        },
+        xAxis: {
+          labels: {
+            enabled: false
+          }
+        },
+        plotOptions: {},
+        tooltip: plot_tooltip
+      },
       interface: {
         chart: {
           defaultSeriesType: 'column',
@@ -386,7 +430,7 @@ var TestList = {
       $.each(testblock_data, function (metric_name, metric_list) {
         //console.log("metric_name=", metric_name);
         //console.log("metric_list=", metric_list);
-        if ((metric_name == 'time') || (metric_name == 'path_length') || (metric_name == 'publish_rate') || (metric_name == 'interface'))
+        if ((metric_name == 'time') || (metric_name == 'path_length') || (metric_name == 'publish_rate') || (metric_name == 'interface') || (metric_name == 'jerk') || (metric_name == 'goal'))
         {
           number_of_entries = Object.keys(metric_list).length
           //console.log("number_of_entries=", number_of_entries)
@@ -400,7 +444,9 @@ var TestList = {
             if (metric_name == 'path_length') chart_legend_name = testblock_name + "<br>(" + metric_data['details']['root_frame'] + " to " + metric_data['details']['measured_frame'] + ")"
             if (metric_name == 'publish_rate') chart_legend_name = testblock_name + "<br>(" + metric_data['details']['topic'] + ")"
             if (metric_name == 'interface') chart_legend_name = testblock_name + "<br>(" + metric_data['details'] + ")"
-            
+            if (metric_name == 'jerk') chart_legend_name = testblock_name + "<br>(" + metric_data['details']['topic'] + ")"
+            if (metric_name == 'goal') chart_legend_name = testblock_name + "<br>(" + metric_data['details']['topic'] + ")"
+
             if (!data_per_test.hasOwnProperty(metric_name)) data_per_test[metric_name] = [];
             
             if (number_of_testblocks <= 1) {color_testblock = 0}

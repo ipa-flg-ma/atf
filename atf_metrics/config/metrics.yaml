@@ -9,6 +9,10 @@ obstacle_distance:
 publish_rate:
   handler: CalculatePublishRateParamHandler
 interface:
-    handler: CalculateInterfaceParamHandler
+  handler: CalculateInterfaceParamHandler
+jerk:
+  handler: CalculateJerkParamHandler
+goal:
+  handler: CalculateGoalParamHandler
 # example:
 #   handler: ExampleParamHandler

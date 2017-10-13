@@ -15,7 +15,11 @@ class ATF:
         #print "atf: testblock_list=", self.testblock_list
 
         self.recorder_handle = atf_core.ATFRecorder(self.config, self.testblock_list)
-        self.testblocks = atf_configuration_parser.create_testblocks(self.config, self.recorder_handle)
+
+        rospy.loginfo('\033[91m' + '----self.testblocks = atf_configuration_parser.create_testblocks(self.config, '
+                                   'self.recorder_handle, '+'\033[1m'+'create_metrics=True'+'\033[0m'+'\033[91m'+')----' + '\033[0m')
+
+        self.testblocks = atf_configuration_parser.create_testblocks(self.config, self.recorder_handle, create_metrics=True)
         self.init()
 
     def init(self):

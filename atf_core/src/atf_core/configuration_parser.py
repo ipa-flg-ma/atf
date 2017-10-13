@@ -18,7 +18,7 @@ class ATFConfigurationParser:
         self.config = rosparam.get_param(self.ns)
         #print "config loader: config=", self.config
 
-        #self.test_name = self.config["test_name"]
+        # self.test_name = self.config["test_name"]
         #print "config loader: test_name=\n", self.test_name
         #self.test_config = self.config["test_config"]
         #print "config loader: test_config=\n", self.test_config
@@ -91,7 +91,7 @@ class ATFConfigurationParser:
         return testblock_list
 
     def load_data(self, filename):
-        print "config parser filename:", filename
+        # print "config parser filename:", filename
         if os.path.isfile(filename):
             with open(filename, 'r') as stream:
                 doc = yaml.load(stream)

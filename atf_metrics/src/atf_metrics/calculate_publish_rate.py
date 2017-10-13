@@ -53,15 +53,18 @@ class CalculatePublishRate:
     def start(self, timestamp):
         self.active = True
         self.start_time = timestamp
+        rospy.loginfo('\033[91m' + '----start publish rate.py----' + '\033[0m')
+
 
     def stop(self, timestamp):
         self.active = False
         self.stop_time = timestamp
         self.finished = True
+        rospy.signal_shutdown('\033[91m' + '-----------stop-----------' + '\033[0m')
 
     def pause(self, timestamp):
         # TODO: Implement pause time and counter calculation
-        #FIXME: check rate calculation in case of pause (counter, start_time and stop_time)
+        # FIXME: check rate calculation in case of pause (counter, start_time and stop_time)
         pass
 
     def purge(self, timestamp):

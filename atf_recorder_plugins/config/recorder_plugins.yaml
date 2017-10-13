@@ -1,4 +1,5 @@
 #resources: RecordResources
 interface: RecordInterface
 #obstacle_distance: RecordObstacleDistance
+#goal: RecordGoal
 # example: Example
