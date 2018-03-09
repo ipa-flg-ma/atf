@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# from atf_recorder import BagfileWriter
 import rospy
 import rosgraph
 import rosservice
@@ -6,10 +7,19 @@ import socket
 import httplib
 
 from atf_msgs.msg import Api, NodeApi, InterfaceItem
+import geometry_msgs.msg
+import geometry_msgs.msg
+import geometry_msgs.msg
+import move_base_msgs.msg
 
-
-class RecordInterface:
+class RecordGoal:
+    # def __init__(self, topic_prefix, config_file, robot_config_file, write_lock, bag_file):
     def __init__(self, write_lock, bag_file_writer):
+        # self.topic_prefix = topic_prefix
+        # self.test_config = config_file
+        # self.robot_config_file = robot_config_file
+
+        # self.BfW = BagfileWriter(bag_file, write_lock)
         self.bag_file_writer = bag_file_writer
 
     def trigger_callback(self, goal):
@@ -50,9 +60,15 @@ class RecordInterface:
         # print "api_dict=\n", api_dict
         api = self.dict_to_msg(api_dict)
 
+        # topics = {'/initialpose': PoseWithCovarianceStamped,
+        #            '/move_base_simple/goal': PoseStamped,
+        #            '/clicked_point': PointStamped,
+        #            '/move_base/goal': MoveBaseActionGoal}
 
-        # write api to bagfile
-        self.bag_file_writer.write_to_bagfile("/atf/" + goal.name + "/api", api, rospy.Time.now())
+        self.bag_file_writer.write_to_bagfile('/initialpose', api, rospy.Time.now())
+        self.bag_file_writer.write_to_bagfile('/move_base/goal', api, rospy.Time.now())
+        # self.bag_file_writer.write_to_bagfile("/atf/" + goal.name + "/api", api, rospy.Time.now())
+
 
     def get_service_types(self, services):
         service_types = []

@@ -50,6 +50,7 @@ class CalculateTime:
 
     def start(self, timestamp):
         self.start_time = timestamp
+        rospy.loginfo('\033[91m' + '----time.py----' + '\033[0m')
 
     def stop(self, timestamp):
         self.stop_time = timestamp

@@ -4,4 +4,6 @@ from atf_metrics.calculate_resources import CalculateResources, CalculateResourc
 from atf_metrics.calculate_distance_to_obstacles import CalculateDistanceToObstacles, CalculateDistanceToObstaclesParamHandler
 from atf_metrics.calculate_publish_rate import CalculatePublishRate, CalculatePublishRateParamHandler
 from atf_metrics.calculate_interface import CalculateInterface, CalculateInterfaceParamHandler
+from atf_metrics.calculate_jerk import CalculateJerk, CalculateJerkParamHandler
+from atf_metrics.calculate_goal import CalculateGoal, CalculateGoalParamHandler
 # from example import Example, ExampleParamHandler

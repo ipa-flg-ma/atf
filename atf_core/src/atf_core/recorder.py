@@ -60,6 +60,7 @@ class ATFRecorder:
 
         self.subscriber = []
         self.topics = self.get_topics()
+
         rospy.Timer(rospy.Duration(0.5), self.create_subscriber_callback)
 
         # test status monitoring
@@ -140,7 +141,7 @@ class ATFRecorder:
             raise ATFRecorderError("Testblock '%s' not in test config" % trigger.name)
 
         # Send message to all recorder plugins
-        #print "self.recorder_plugin_list=", self.recorder_plugin_list
+        # print "self.recorder_plugin_list=", self.recorder_plugin_list
         for recorder_plugin in self.recorder_plugin_list:
             #FIXME: need to filter the topics not needed for current trigger
             recorder_plugin.trigger_callback(trigger)
