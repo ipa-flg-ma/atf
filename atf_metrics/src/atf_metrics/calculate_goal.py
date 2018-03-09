@@ -201,13 +201,6 @@ class CalculateGoal:
         groundtruth_result = None
         details = {'topic': self.goaltopic}
         if self.finished:
-            # save file for debugging
-            f = open('/home/flg-ma/PycharmProjects/goal_metrics/debug/calculate_goal.txt', 'w')
-            f.write(str(self.A_listener_position))
-            f.write('\n' + '=' * 20 + '\n')
-            f.write(str(self.A_listener_goal))
-            f.close()
-
             if self.groundtruth != None and self.groundtruth_epsilon != None:
                 # if distance <= self.groundtruth and angle <= self.groundtruth_epsilon:
                 if (self.getDistance() - self.groundtruth) <= self.groundtruth_epsilon:
