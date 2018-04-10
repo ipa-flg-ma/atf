@@ -6,4 +6,5 @@ from atf_metrics.calculate_publish_rate import CalculatePublishRate, CalculatePu
 from atf_metrics.calculate_interface import CalculateInterface, CalculateInterfaceParamHandler
 from atf_metrics.calculate_jerk import CalculateJerk, CalculateJerkParamHandler
 from atf_metrics.calculate_goal import CalculateGoal, CalculateGoalParamHandler
+from atf_metrics.calculate_localization_distance import CalculateLocalizationDistance, CalculateLocalizationDistanceParamHandler
 # from example import Example, ExampleParamHandler

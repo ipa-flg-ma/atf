@@ -14,5 +14,7 @@ jerk:
   handler: CalculateJerkParamHandler
 goal:
   handler: CalculateGoalParamHandler
+localization_distance:
+  handler: CalculateLocalizationDistanceParamHandler
 # example:
 #   handler: ExampleParamHandler
