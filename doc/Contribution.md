@@ -82,6 +82,7 @@ if (metric_name == 'jerk') chart_legend_name = testblock_name + "<br>(" + metric
 ```javascript
 if (metric_name == '*name*') chart_legend_name = testblock_name + "<br>(" + metric_data['details'] + ")"
 ```
+
 To get additional information in the presenter. The "details" you store in the "metrics\_data" will be shown below the metrics-name in brackets.
 
 
@@ -197,3 +198,4 @@ testblock_nav:
   | groundtruth |defines the expected value, example: 5 [m]
   | groundtruth_epsilon |defines max allowed +/- for the groundtruth, example: +/- 0,1 [m] |
   | topic |defines subscribed topic |
+

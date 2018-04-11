@@ -201,6 +201,7 @@ class CalculateGoal:
         groundtruth_result = None
         details = {'topic': self.goaltopic}
         if self.finished:
+
             if self.groundtruth != None and self.groundtruth_epsilon != None:
                 # if distance <= self.groundtruth and angle <= self.groundtruth_epsilon:
                 if (self.getDistance() - self.groundtruth) <= self.groundtruth_epsilon:
